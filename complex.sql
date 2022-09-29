@@ -23,5 +23,20 @@ WHERE s.RH = "AB-");
 
 
 
+
+SELECT * FROM afiliados
+WHERE TIP_SAN_RH in ((SELECT  
+SUBSTRING_INDEX(s.RECIBE, ",", -1) as v2
+FROM tipo_sangre as s
+WHERE s.RH = "AB-")
+,
+(SELECT  
+SUBSTRING_INDEX(s.RECIBE, ",", 1) as v1
+FROM tipo_sangre as s
+WHERE s.RH = "AB-"))
+
+
+
+
 Tarea 28-09-2022
 Quiz como usar union
