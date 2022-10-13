@@ -1,0 +1,31 @@
+--minus solo corre en oracle
+select 
+    "COUNTRY",
+    "COUNTRY_CODE",
+    "INDICATOR_NAME",
+    "INDICATOR_CODE"
+from WORLD."WORLD_POPULATION"
+minus
+select 
+    "COUNTRY",
+    "COUNTRY_CODE",
+    "INDICATOR_NAME",
+    "INDICATOR_CODE"
+from WORLD."WORLD_POPULATION"
+where "COUNTRY_CODE" = 'BOL' or "COUNTRY_CODE" = 'BRA'
+
+
+select 
+    "COUNTRY",
+    "COUNTRY_CODE",
+    "INDICATOR_NAME",
+    "INDICATOR_CODE"
+from WORLD."WORLD_POPULATION"
+INTERSECT
+select 
+    "COUNTRY",
+    "COUNTRY_CODE",
+    "INDICATOR_NAME",
+    "INDICATOR_CODE"
+from WORLD."WORLD_POPULATION"
+where "COUNTRY_CODE" = 'BOL' or "COUNTRY_CODE" = 'BRA'
