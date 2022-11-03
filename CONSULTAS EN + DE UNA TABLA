@@ -7,3 +7,30 @@ SELECT TIP_SAN_RH, TIP_AFIL_CODIGO, tipo_afiliaciones.nombre FROM AFILIADOS, tip
 WHERE TIPO_AFILIACIONES.CODIGO = AFILIADOS.TIP_AFIL_CODIGO
 AND tipo_afiliaciones.CODIGO != 2
 AND TIP_SAN_RH = 'O+'
+
+select count(DEP_CODIGO), DESCRIPCION from departamentos
+group by DESCRIPCION
+
+select count(ciudades.codigo), departamentos.nombre
+from ciudades
+inner join departamentos on departamentos.codigo = ciudades.dep_codigo
+group by departamentos.nombre
+
+select * from ciudades 
+
+select * from ciudades as y 
+where y.codigo not in (select a.CIU_DIREC_CODIGO from afiliados as a)
+
+select timestampdiff(year, fecha_nacimiento, now()) edad, 'pre-adulto' Rango, primer_nombre, primer_apellido from afiliados 
+where timestampdiff(year, fecha_nacimiento, now()) between 30 and 40
+order by edad desc
+
+select timestampdiff(year, fecha_nacimiento, now()) edad, 'adulto' Rango, primer_nombre, primer_apellido from afiliados 
+where timestampdiff(year, fecha_nacimiento, now()) > 40
+union 
+select timestampdiff(year, fecha_nacimiento, now()) edad, 'pre-adulto' Rango, primer_nombre, primer_apellido from afiliados 
+where timestampdiff(year, fecha_nacimiento, now()) between 40 and 30
+union
+select timestampdiff(year, fecha_nacimiento, now()) edad, 'joven' Rango, primer_nombre, primer_apellido from afiliados 
+where timestampdiff(year, fecha_nacimiento, now()) < 32
+order by edad desc
