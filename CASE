@@ -9,7 +9,7 @@ end
 from afiliados
 
 
-
+///////////////////////////////////////////////
 
 IF
 select documento, genero_codigo,
@@ -22,3 +22,15 @@ else 'otro'
 end
 ) as columna_case
 from afiliados
+
+//////////////////////////////////////////////
+
+select 
+timestampdiff (year, fecha_nacimiento, now()) as edad, primer_nombre, primer_apellido, '40-50' as tipos from afiliados
+where timestampdiff (year, fecha_nacimiento, now()) between 40 and 50
+union
+
+select 
+timestampdiff (year, fecha_nacimiento, now()) as edad, primer_nombre, primer_apellido, '30-40' as tipos from afiliados
+where timestampdiff (year, fecha_nacimiento, now()) between 30 and 40
+
