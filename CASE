@@ -7,3 +7,18 @@ else 'otro'
 end
 ) as columna_case
 from afiliados
+
+
+
+
+IF
+select documento, genero_codigo,
+IF(genero_codigo = 1,'MASCULINO', 'FEMENINO') AS COL_IF,
+(case
+ when genero_codigo = 1 then 'nombre'
+when genero_codigo = 2 then 'mujer'
+
+else 'otro'
+end
+) as columna_case
+from afiliados
