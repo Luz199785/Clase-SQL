@@ -1,0 +1,9 @@
+Select documento, genero_codigo,
+(case
+ when genero_codigo = 1 then 'nombre'
+when genero_codigo = 2 then 'mujer'
+
+else 'otro'
+end
+) as columna_case
+from afiliados
