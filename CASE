@@ -34,7 +34,9 @@ select
 timestampdiff (year, fecha_nacimiento, now()) as edad, primer_nombre, primer_apellido, '30-40' as tipos from afiliados
 where timestampdiff (year, fecha_nacimiento, now()) between 30 and 40
 
-/////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Trae la cantidad de afiliados y el nombre del estrato nombrado de la siguiente forma:
+Estrato uno, Estrato 2, Estrato 3.....Estrato Rural.
 - Con IF:
 select count(a.CORREO) as total,
 IF (la.NOMBRE = "ESTRATO 1", "ESTRATO UNO",
@@ -53,6 +55,8 @@ IF (la.NOMBRE = "ESTRATO 6", "ESTRATO SEIS",
 FROM afiliados as a
 inner join estratos as la on la.codigo = a.ESTRATO_CODIGO
 group by la.codigo order by la.codigo;
+
+///////////////////////////////////////////////////////////////////////////////
 
 - Con CASE:
 select count(correo) as total,
