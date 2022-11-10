@@ -34,3 +34,44 @@ select
 timestampdiff (year, fecha_nacimiento, now()) as edad, primer_nombre, primer_apellido, '30-40' as tipos from afiliados
 where timestampdiff (year, fecha_nacimiento, now()) between 30 and 40
 
+/////////////////////////////////////////////
+- Con IF:
+select count(a.CORREO) as total,
+IF (la.NOMBRE = "ESTRATO 1", "ESTRATO UNO",
+IF (la.NOMBRE = "ESTRATO 2", "ESTRATO DOS",
+IF (la.NOMBRE = "ESTRATO 3", "ESTRATO TRES",
+IF (la.NOMBRE = "ESTRATO 4", "ESTRATO CUATRO",
+IF (la.NOMBRE = "ESTRATO 5", "ESTRATO CINCO",
+IF (la.NOMBRE = "ESTRATO 6", "ESTRATO SEIS",
+"ESTRATO RURAL"
+)
+)
+)
+)
+)
+) as estrato
+FROM afiliados as a
+inner join estratos as la on la.codigo = a.ESTRATO_CODIGO
+group by la.codigo order by la.codigo;
+
+- Con CASE:
+select count(correo) as total,
+( CASE
+	when ESTRATO_CODIGO = 1 THEN 'ESTRATO UNO'
+    when ESTRATO_CODIGO = 2 THEN 'ESTRATO DOS'
+    when ESTRATO_CODIGO = 3 THEN 'ESTRATO TRES'
+    when ESTRATO_CODIGO = 4 THEN 'ESTRATO CUATRO'
+    when ESTRATO_CODIGO = 5 THEN 'ESTRATO CINCO'
+    when ESTRATO_CODIGO = 6 THEN 'ESTRATO SEIS'
+    when ESTRATO_CODIGO = 7 THEN 'ESTRATO SIETE'
+    ELSE
+		'OTRO'
+    END ) AS ESTRATO
+FROM afiliados
+group by ESTRATO_CODIGO
+
+///////////////////////////////////////////////
+- Vista: 
+
+
+
